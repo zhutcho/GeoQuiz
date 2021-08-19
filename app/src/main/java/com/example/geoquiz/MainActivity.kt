@@ -16,7 +16,6 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var trueButton: Button
     private lateinit var falseButton: Button
-    private lateinit var prevButton: ImageButton
     private lateinit var nextButton: ImageButton
     private lateinit var questionTextView: TextView
 
@@ -38,7 +37,6 @@ class MainActivity : AppCompatActivity() {
 
         trueButton = findViewById(R.id.true_button)
         falseButton = findViewById(R.id.false_button)
-        prevButton = findViewById(R.id.prev_button)
         nextButton = findViewById(R.id.next_button)
         questionTextView = findViewById(R.id.question_text_view)
 
@@ -48,12 +46,6 @@ class MainActivity : AppCompatActivity() {
 
         falseButton.setOnClickListener { view: View ->
             checkAnswer(false)
-        }
-
-        prevButton.setOnClickListener {
-            currentIndex = (currentIndex + questionBank.size - 1) % questionBank.size
-            updateQuestion()
-            buttonEnabled(true)
         }
 
         nextButton.setOnClickListener {
@@ -118,7 +110,6 @@ class MainActivity : AppCompatActivity() {
         toast.show()
 
         if (currentIndex == questionBank.size - 1) {
-            Thread.sleep(3000)
             val percentCorrect: Float = totalCorrect.toFloat() / questionBank.size.toFloat()
             val toastString: String = percentCorrect.toString()
             val toastScore = Toast.makeText(this, toastString, Toast.LENGTH_SHORT)
