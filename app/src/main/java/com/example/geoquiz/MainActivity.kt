@@ -52,11 +52,13 @@ class MainActivity : AppCompatActivity() {
         prevButton.setOnClickListener {
             currentIndex = (currentIndex + questionBank.size - 1) % questionBank.size
             updateQuestion()
+            buttonEnabled(true)
         }
 
         nextButton.setOnClickListener {
             currentIndex = (currentIndex + 1) % questionBank.size
             updateQuestion()
+            buttonEnabled(true)
         }
 
         questionTextView.setOnClickListener {
@@ -112,5 +114,12 @@ class MainActivity : AppCompatActivity() {
             Toast.LENGTH_SHORT)
         toast.setGravity(Gravity.TOP, 0, 0)
         toast.show()
+
+        buttonEnabled(false)
+    }
+
+    private fun buttonEnabled(bool: Boolean) {
+        trueButton.isEnabled = bool
+        falseButton.isEnabled = bool
     }
 }
